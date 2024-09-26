@@ -1,0 +1,38 @@
+{
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.base.schema.json",
+  "name": "ncar-geocat",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "BASE_IMAGE_NAME": "repo.nextgenfed.com/ng-docker/navair-jse/ubi9",
+      "BASE_IMAGE_TAG": "9.4",
+      "USERNAME": "${localEnv:USER}"
+    }
+  },
+  "mounts": [
+    // Copy build environment gitconfig into dev container.
+    // This comes from WSL config containing common settings and user config.
+    "source=/etc/gitconfig,target=/etc/gitconfig,type=bind",
+    // Mount personal data folder into dev container
+    "source=${localEnv:SOURCE_DATA},target=/var/data,type=bind"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bierner.markdown-mermaid",
+        "davidanson.vscode-markdownlint",
+        "eamodio.gitlens",
+        "kevinrose.vsc-python-indent",
+        "ms-python.black-formatter",
+        "ms-python.debugpy",
+        "ms-python.python",
+        "ms-vscode.hexeditor",
+        "redhat.vscode-xml",
+        "redhat.vscode-yaml",
+        "streetsidesoftware.code-spell-checker",
+        "stkb.rewrap",
+        "timonwong.shellcheck"
+      ]
+    }
+  }
+}
